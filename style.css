@@ -1,0 +1,12 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.div-child {
+    background-color: rgb(218, 218, 218);
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+}
