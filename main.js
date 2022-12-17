@@ -1,42 +1,70 @@
 const body = document.body;
 
-const newGridBtn = document.createElement('button');
-newGridBtn.classList.add('new-button');
-newGridBtn.textContent = 'Generate';
-body.appendChild(newGridBtn);
+const promptBtn = document.createElement('button');
+promptBtn.classList.add('prompt-btn');
+promptBtn.textContent = 'Generate Button';
+body.appendChild(promptBtn);
 
-const container = document.createElement('div');
-container.classList.add('container');
-body.appendChild(container);
+const flexContainer = document.createElement('div');
+flexContainer.classList.add('flex-container');
+body.appendChild(flexContainer);
 
 for(let i = 0; i < 16; i++) {
-    const childContainer = document.createElement('div');
-    childContainer.classList.add('child-container');
-    container.appendChild(childContainer);
+    const flexChild = document.createElement('div');
+    flexChild.classList.add('flex-child');
+    flexContainer.appendChild(flexChild);
+    flexContainer.style.border = '1px solid black';
+    flexContainer.style.borderLeft = 'none';
+    flexContainer.style.borderTop = 'none';
     for(let j = 0; j < 16; j++) {
-        const child = document.createElement('div');
-        child.classList.add('child')
-        childContainer.appendChild(child);
+        const flexItem = document.createElement('div');
+        flexItem.classList.add('flex-item')
+        flexChild.appendChild(flexItem);
     }
-    newGridBtn.addEventListener('click', () => {
-        childContainer.remove();
+    promptBtn.addEventListener('click', () => {
+        flexChild.remove();
     })
 }
 
-newGridBtn.addEventListener('click', () => {
-    const gridSize = prompt('Enter');
-    for(let i = 0; i < gridSize; i++) {
-        body.appendChild(container);
-        const childContainer = document.createElement('div');
-        childContainer.classList.add('child-container');
-        container.appendChild(childContainer);
-        for(let j = 0; j < gridSize; j++) {
-            const child = document.createElement('div');
-            child.classList.add('child')
-            childContainer.appendChild(child);
+promptBtn.addEventListener('click', () => {
+    flexContainer.remove();
+    const promptFade = document.createElement('div');
+    promptFade.classList.add('bg-fade')
+    body.appendChild(promptFade);
+
+    const promptBox = document.createElement('div');
+    promptBox.classList.add('prompt-box');
+    promptFade.appendChild(promptBox);
+
+    const promptInput = document.createElement('input');
+    promptBox.appendChild(promptInput);
+    promptInput.focus();
+
+    promptInput.addEventListener('keypress', (e) => {
+        if(e.key === 'Enter') {
+            promptBox.remove();
+            promptFade.remove();
+            body.appendChild(flexContainer);
+            createNewGrid(promptInput.value);
         }
-        newGridBtn.addEventListener('click', () => {
-            childContainer.remove();
+    })
+})
+
+function createNewGrid(gridSize) {
+    if(gridSize < 1) {
+        flexContainer.remove();
+    }
+    for(let i = 0; i < gridSize; i++) {
+        const flexChild = document.createElement('div');
+        flexChild.classList.add('flex-child');
+        flexContainer.appendChild(flexChild);
+        for(let j = 0; j < gridSize; j++) {
+            const flexItem = document.createElement('div');
+            flexItem.classList.add('flex-item')
+            flexChild.appendChild(flexItem);
+        }
+        promptBtn.addEventListener('click', () => {
+            flexChild.remove();
         })
     }
-})
+}
