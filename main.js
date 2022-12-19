@@ -20,6 +20,10 @@ for(let i = 0; i < 16; i++) {
         const flexItem = document.createElement('div');
         flexItem.classList.add('flex-item')
         flexChild.appendChild(flexItem);
+        flexItem.addEventListener('mouseenter', () => {
+            flexItem.style.backgroundColor = `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
+            darkenOnHover(flexItem);
+        })
     }
     promptBtn.addEventListener('click', () => {
         flexChild.remove();
@@ -62,9 +66,29 @@ function createNewGrid(gridSize) {
             const flexItem = document.createElement('div');
             flexItem.classList.add('flex-item')
             flexChild.appendChild(flexItem);
+            flexItem.addEventListener('mouseenter', () => {
+                flexItem.style.backgroundColor = `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
+                darkenOnHover(flexItem);
+            })
         }
         promptBtn.addEventListener('click', () => {
             flexChild.remove();
         })
     }
+}
+
+function darkenOnHover(itemColor) {
+        itemColor.addEventListener('mouseenter', () => {
+        let itemDarkColor = itemColor.style.backgroundColor;
+        const firstIndex = itemDarkColor.indexOf('(');
+        const lastIndex = itemDarkColor.indexOf(')');
+        itemDarkColor = itemDarkColor.slice(firstIndex + 1, lastIndex).split(',');
+        console.log(itemDarkColor);
+        itemDarkColor = itemDarkColor.map(item => Math.floor(item / 1.7));
+        itemColor.style.backgroundColor = `rgb(${itemDarkColor})`
+        });
+}
+
+function randomColor() {
+return Math.floor(Math.random() * 256);
 }
