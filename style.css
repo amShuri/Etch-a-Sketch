@@ -7,6 +7,10 @@
     height: 570px;
     margin: 0 auto;
     display: flex;
+    border: 1px solid rgb(128, 128, 128, 0.5);
+    border-top: 0;
+    border-left: 0;
+    box-shadow: 0 0 4px rgba(128, 128, 128, 0.5);
 }
 
 .flex-child {
@@ -17,7 +21,7 @@
 
 .flex-item {
     height: 100%;
-    border: 1px solid #000;
+    border: 1px solid rgb(128, 128, 128, 0.5);
     border-bottom: 0;
     border-right: 0;
 }
