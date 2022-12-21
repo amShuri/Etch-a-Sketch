@@ -13,7 +13,6 @@
 body {
     max-width: 550px;
     margin: 0 auto;
-    margin-bottom: 1rem;
     animation-name: bg-color;
     animation-duration: 8s;
     animation-iteration-count: infinite;
@@ -44,9 +43,8 @@ button:active {
 }
 
 .para-grid-size {
-    display: flex;
-    justify-content: center;
     margin: 0;
+    text-align: center;
     font-size: 0.85rem;
     font-style: italic;
 }
@@ -102,7 +100,7 @@ button:active {
     background-color: rgb(180, 240, 255);
     background: linear-gradient(345deg, rgba(180, 240, 255, 1) 0%, rgba(110, 205, 245, 0.85) 50%, rgba(115, 215, 255, 1) 100%);
     margin: 0 auto;
-    margin-top: 6rem;
+    margin-top: 7.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -117,7 +115,6 @@ button:active {
     color: #fff;
     font-weight: bold;
     text-align: center;
-    font-family: inherit;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 }
 
@@ -166,9 +163,23 @@ button:active {
 }
 
 footer {
-    display: flex;
-    justify-content: center;
+    text-align: center;
+    margin: 5px 0;
 }
+footer a {
+    font-size: 0.85rem;
+    text-decoration: none;
+    border-bottom: 1px solid rgb(105, 90, 240);
+}
+footer a:visited {
+    color:rgb(105, 90, 240);
+}
+footer a:hover{
+    color: rgb(235, 65, 65);
+    border-bottom: 1px solid rgb(235, 65, 65);
+}
+
+
 
 @keyframes bg-color {
     0% {background: rgba(114, 216, 255, 0.2);}
