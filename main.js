@@ -2,29 +2,36 @@ const body = document.body;
 const pageTitle = document.createElement('h1');
 const btnContainer = document.createElement('div');
 const newGridBtn = document.createElement('button');
-const clearGridBtn = document.createElement('button');
+const paraGridSize = document.createElement('p');
 const hideBorderBtn = document.createElement('button');
 const flexContainer = document.createElement('div');
 const footer = document.createElement('footer');
+const footerLink = document.createElement('a');
+
 
 pageTitle.textContent = 'Etch a Sketch';
 newGridBtn.textContent = 'New Grid';
-clearGridBtn.textContent = 'Clear Grid';
 hideBorderBtn.textContent = 'Hide Borders';
-footer.textContent = 'by Shuri';
-btnContainer.classList.add('btn-container');
-flexContainer.classList.add('flex-container');
+footerLink.textContent = 'amShuri GitHub';
+footerLink.href = 'https://github.com/amShuri/Etch-a-Sketch';
+footerLink.setAttribute('target', '_blank');
 
+btnContainer.classList.add('btn-container');
+paraGridSize.classList.add('para-grid-size');
+flexContainer.classList.add('flex-container');
 
 body.appendChild(pageTitle);
 body.appendChild(btnContainer);
 btnContainer.appendChild(newGridBtn);
-btnContainer.appendChild(clearGridBtn);
 btnContainer.appendChild(hideBorderBtn);
 body.appendChild(flexContainer);
+body.insertBefore(paraGridSize, flexContainer);
 body.appendChild(footer);
+footer.appendChild(footerLink)
+
 
 function createNewGrid(gridSize) {
+    paraGridSize.textContent = `Grid size: ${gridSize} x ${gridSize}`;
     for(let i = 0; i < gridSize; i++) {
         const flexChild = document.createElement('div');
         flexChild.classList.add('flex-child');
@@ -33,7 +40,6 @@ function createNewGrid(gridSize) {
             const flexItem = document.createElement('div');
             flexItem.classList.add('flex-item');
             flexChild.appendChild(flexItem);
-
             flexItem.addEventListener('mouseenter', () => {
                 flexItem.style.backgroundColor = `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
                 darkenOnHover(flexItem);
@@ -87,16 +93,13 @@ function promptInputBox() {
     promptBox.appendChild(promptMsg);
     promptBox.appendChild(promptInput);
     promptBox.appendChild(inputBtn);
-
     promptInput.focus();
 
     inputBtn.addEventListener('click', () => {
         const flexChildren = document.querySelectorAll('.flex-child');
         if (promptInput.value >= 1 && promptInput.value <= 100) {
             for(const flexChild of flexChildren) {
-                if(flexChild) {
-                    flexChild.remove();
-                }
+                flexChild.remove();
             }
             promptFade.remove();
             createNewGrid(promptInput.value)
@@ -120,13 +123,6 @@ function promptInputBox() {
     });
 }
 
-function clearGrid() {
-    const flexItems = document.querySelectorAll('.flex-item');
-    for(const flexItem of flexItems) {
-        flexItem.style.backgroundColor = 'transparent';
-    }
-}
-
 function hideBorders() {
     const flexItems = document.querySelectorAll('.flex-item');
     for(const flexItem of flexItems) {
@@ -142,5 +138,4 @@ function hideBorders() {
 
 window.addEventListener('load', createNewGrid(16));
 newGridBtn.addEventListener('click', promptInputBox);
-clearGridBtn.addEventListener('click', clearGrid);
 hideBorderBtn.addEventListener('click', hideBorders);
