@@ -3,7 +3,6 @@
 * {
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    user-select: none;
 }
 
 :root {
@@ -30,8 +29,8 @@ h1 {
 }
 
 .flex-container {
-    width: 550px;
-    height: 550px;
+    width: 515px;
+    height: 515px;
     margin: 0 auto;
     display: flex;
     border: var(--gray-border);
