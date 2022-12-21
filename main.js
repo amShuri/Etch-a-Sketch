@@ -1,35 +1,28 @@
 const body = document.body;
-
 const pageTitle = document.createElement('h1');
 const btnContainer = document.createElement('div');
 const newGridBtn = document.createElement('button');
+const clearGridBtn = document.createElement('button');
 const hideBorderBtn = document.createElement('button');
 const flexContainer = document.createElement('div');
+const footer = document.createElement('footer');
 
 pageTitle.textContent = 'Etch a Sketch';
 newGridBtn.textContent = 'New Grid';
+clearGridBtn.textContent = 'Clear Grid';
 hideBorderBtn.textContent = 'Hide Borders';
+footer.textContent = 'by Shuri';
 btnContainer.classList.add('btn-container');
 flexContainer.classList.add('flex-container');
+
 
 body.appendChild(pageTitle);
 body.appendChild(btnContainer);
 btnContainer.appendChild(newGridBtn);
+btnContainer.appendChild(clearGridBtn);
 btnContainer.appendChild(hideBorderBtn);
 body.appendChild(flexContainer);
-
-hideBorderBtn.addEventListener('click', () => {
-    const flexChildren = document.querySelectorAll('div');
-    for(const flexChild of flexChildren) {
-        if (flexChild.classList.contains('flex-item') && flexChild.style.borderWidth !== '0px') {
-            flexChild.style.borderWidth = '0px';
-            hideBorderBtn.textContent = 'Show Borders';
-        } else {
-            flexChild.style.borderWidth = '1px';
-            hideBorderBtn.textContent = 'Hide Borders';
-        }
-    } 
-})
+body.appendChild(footer);
 
 function createNewGrid(gridSize) {
     for(let i = 0; i < gridSize; i++) {
@@ -40,6 +33,7 @@ function createNewGrid(gridSize) {
             const flexItem = document.createElement('div');
             flexItem.classList.add('flex-item');
             flexChild.appendChild(flexItem);
+
             flexItem.addEventListener('mouseenter', () => {
                 flexItem.style.backgroundColor = `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
                 darkenOnHover(flexItem);
@@ -113,18 +107,40 @@ function promptInputBox() {
             promptInput.value = '';
             promptInput.focus();
         } 
-    })
+    });
 
     promptInput.addEventListener('keypress', (e) => {
         if(e.key === 'Enter') {
             inputBtn.click();
         }
-    })
+    });
 
     promptCloseBtn.addEventListener('click', () => {
         promptFade.remove();
-    })
+    });
+}
+
+function clearGrid() {
+    const flexItems = document.querySelectorAll('.flex-item');
+    for(const flexItem of flexItems) {
+        flexItem.style.backgroundColor = 'transparent';
+    }
+}
+
+function hideBorders() {
+    const flexItems = document.querySelectorAll('.flex-item');
+    for(const flexItem of flexItems) {
+        if (flexItem.style.borderWidth !== '0px') {
+            flexItem.style.borderWidth = '0px';
+            hideBorderBtn.textContent = 'Show Borders';
+        } else {
+            flexItem.style.borderWidth = '1px';
+            hideBorderBtn.textContent = 'Hide Borders';
+        }
+    }
 }
 
 window.addEventListener('load', createNewGrid(16));
 newGridBtn.addEventListener('click', promptInputBox);
+clearGridBtn.addEventListener('click', clearGrid);
+hideBorderBtn.addEventListener('click', hideBorders);
