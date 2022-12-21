@@ -14,17 +14,40 @@ body {
     max-width: 550px;
     margin: 0 auto;
     margin-bottom: 1rem;
-}
-
-button {
-    cursor: pointer;
+    animation-name: bg-color;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
 }
 
 h1 {
     margin: 0;
     display: flex;
     justify-content: center;
-    color:rgba(110, 205, 245, 0.85);
+    color:rgba(255, 255, 255, 1);
+    text-shadow: 1px 1px 4px rgb(0, 35, 80, 0.75);
+}
+
+button {
+    cursor: pointer;
+    border-radius: 3px;
+    border-width: 1px;
+    padding: 0.4rem 0.8rem;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    filter: brightness(95%);
+}
+
+button:active {
+    filter: brightness(100%);
+}
+
+.para-grid-size {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    font-size: 0.85rem;
     font-style: italic;
 }
 
@@ -38,6 +61,7 @@ h1 {
     border-left: none;
     box-shadow: var(--gray-box-shadow);
     border-width: 1px;
+    background-color: white;
 }
 
 .flex-child {
@@ -69,7 +93,7 @@ h1 {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .prompt-box {
@@ -78,7 +102,7 @@ h1 {
     background-color: rgb(180, 240, 255);
     background: linear-gradient(345deg, rgba(180, 240, 255, 1) 0%, rgba(110, 205, 245, 0.85) 50%, rgba(115, 215, 255, 1) 100%);
     margin: 0 auto;
-    margin-top: 5rem;
+    margin-top: 6rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -111,7 +135,7 @@ h1 {
     width: 30px;
     height: 30px;
     left: 105px;
-    top: -60px;
+    top: -55px;
     color: #fff;
     background-color: rgba(128, 128, 128, 0.6);
     border-radius: 50%;
@@ -139,6 +163,19 @@ h1 {
 .prompt-warning-msg {
     color: rgb(235, 65, 65);
     text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.8);
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes bg-color {
+    0% {background: rgba(114, 216, 255, 0.2);}
+    25% {background: rgba(114, 216, 255, 0.4);}
+    50% {background: rgba(114, 216, 255, 0.6);}
+    75% {background: rgba(114, 216, 255, 0.4);}
+    100% {background: rgba(114, 216, 255, 0.2);}
 }
 
 /* not the optimal way to add media queries-
