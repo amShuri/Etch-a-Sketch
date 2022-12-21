@@ -19,13 +19,13 @@ btnContainer.appendChild(hideBorderBtn);
 body.appendChild(flexContainer);
 
 hideBorderBtn.addEventListener('click', () => {
-    const flexDivs = document.querySelectorAll('div');
-    for(const flexDiv of flexDivs) {
-        if (flexDiv.style.borderWidth !== '0px') {
-            flexDiv.style.borderWidth = '0px';
+    const flexChildren = document.querySelectorAll('div');
+    for(const flexChild of flexChildren) {
+        if (flexChild.classList.contains('flex-item') && flexChild.style.borderWidth !== '0px') {
+            flexChild.style.borderWidth = '0px';
             hideBorderBtn.textContent = 'Show Borders';
         } else {
-            flexDiv.style.borderWidth = '1px';
+            flexChild.style.borderWidth = '1px';
             hideBorderBtn.textContent = 'Hide Borders';
         }
     } 
@@ -97,16 +97,16 @@ function promptInputBox() {
     promptInput.focus();
 
     inputBtn.addEventListener('click', () => {
-        const flexDivs = document.querySelectorAll('div');
+        const flexChildren = document.querySelectorAll('.flex-child');
         if (promptInput.value >= 1 && promptInput.value <= 100) {
-            for(const flexDiv of flexDivs) {
-                if(flexDiv.classList.contains('flex-child')) {
-                    flexDiv.remove();
+            for(const flexChild of flexChildren) {
+                if(flexChild) {
+                    flexChild.remove();
                 }
             }
-            promptBox.remove();
             promptFade.remove();
-            createNewGrid(promptInput.value);
+            createNewGrid(promptInput.value)
+            hideBorderBtn.textContent = 'Hide Borders'
         } else {
             promptMsg.textContent = 'Input not valid! Enter a numeric value between 1 and 100';
             promptMsg.classList.add('prompt-warning-msg');
@@ -122,7 +122,6 @@ function promptInputBox() {
     })
 
     promptCloseBtn.addEventListener('click', () => {
-        promptBox.remove();
         promptFade.remove();
     })
 }
